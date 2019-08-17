@@ -12,7 +12,7 @@ red = 255, 0, 0
 green = 0, 255, 0
 blue = 0, 0, 255
 
-speed = 15
+speed = 20
 
 left = False
 right = False
@@ -21,13 +21,17 @@ down = False
 
 
 class snake:
-    x = 60
-    y = 60
+    x = random.randrange(0, 800, 20)
+    y = random.randrange(0, 600, 20)
 
 
 class food:
-    x = random.randrange(0, 800, 15)
-    y = random.randrange(0, 600, 15)
+    x = random.randrange(0, 800, 20)
+    y = random.randrange(0, 600, 20)
+
+def eaten():
+    food.x = random.randrange(0, 800, 20)
+    food.y = random.randrange(0, 600, 20)
 
 
 while 1:
@@ -66,26 +70,30 @@ while 1:
         #     if event.key == pygame.K_DOWN:
         #         down = False
 
-    time.sleep(100.0 / 2000.0);
+
 
     if left:
         snake.x -= speed
-        if snake.x == -15:
-            snake.x += 815
+        if snake.x == -20:
+            snake.x += 820
     if right:
         snake.x += speed
         if snake.x == 800:
             snake.x -= 800
     if up:
         snake.y -= speed
-        if snake.y == -15:
+        if snake.y == -20:
             snake.y += 600
     if down:
         snake.y += speed
         if snake.y == 600:
             snake.y -= 600
 
+
+
+    time.sleep(100.0 / 1200.0)
+
     surface.fill(black)
-    pygame.draw.rect(surface, white, (snake.x, snake.y, 15, 15))
-    pygame.draw.rect(surface, red, (food.x, food.y, 15, 15))
+    pygame.draw.rect(surface, white, (snake.x, snake.y, 20, 20))
+    pygame.draw.rect(surface, red, (food.x, food.y, 20, 20))
     pygame.display.update()
